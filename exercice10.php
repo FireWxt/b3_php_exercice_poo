@@ -5,27 +5,31 @@
  * Refactorisez ce code en créant une classe ShoppingCart avec des méthodes équivalentes.
  */
 
-$cart = [];
+class Cart {
 
-function addItem(array &$cart, string $name, float $price) {
-    $cart[] = ['name' => $name, 'price' => $price];
-}
+    protected array $items = [];
 
-function getTotal(array $cart): float {
-    $total = 0;
-    foreach ($cart as $item) {
-        $total += $item['price'];
+    public function addItem(string $name, float $price): void {
+        $this->items[] = ['name' => $name, 'price' => $price];
     }
-    return $total;
-}
 
-function displayCart(array $cart) {
-    foreach ($cart as $item) {
-        echo $item['name'] . " : " . $item['price'] . " €\n";
+    public function getTotal(): float {
+        $total = 0;
+        foreach ($this->items as $item) {
+            $total += $item['price'];
+        }
+        return $total;
+    }
+
+    public function displayCart(): void {
+        foreach ($this->items as $item) {
+            echo $item['name'] . " : " . $item['price'] . " €<br>";
+        }
     }
 }
 
-addItem($cart, "Livre", 12.5);
-addItem($cart, "Stylo", 2.3);
-displayCart($cart);
-echo "Total : " . getTotal($cart) . " €\n";
+$cart = new Cart();
+$cart->addItem("Livre", 12.5);
+$cart->addItem("Stylo", 2.3);
+$cart->displayCart();
+echo "Total : " . $cart->getTotal() . " €<br>";
