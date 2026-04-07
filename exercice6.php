@@ -12,3 +12,30 @@
 require_once 'exercice1.php';
 
 
+Class Library {
+
+    protected array $books = [];
+
+    public function addBook(Book $book): void {
+        $this->books[] = $book;
+    }
+
+    public function displayBooks(): void {
+        foreach ($this->books as $book) {
+            $book->displayInfo();
+            echo "<hr>";
+        }
+    }
+
+    public function countBooks(): int {
+        return count($this->books);
+    }
+}
+
+$library = new Library();
+$library->addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", 10.99));
+$library->addBook(new Book("To Kill a Mockingbird", "Harper Lee", 8.99));
+$library->addBook(new Book("1984", "George Orwell", 9.99));
+$library->addBook(new Book ("The Catcher in the Rye", "J.D. Salinger", 7.99));
+$library->displayBooks();
+echo "Total Books in Library: " . $library->countBooks() . "<br>";
