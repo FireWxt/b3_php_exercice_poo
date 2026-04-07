@@ -27,3 +27,30 @@ $person = new Person("Alice", "Martin");
 echo $person->getFirstName() . " " . $person->getLastName() . "<br>";
 
 
+class Student extends Person
+{
+    protected string $studentNumber;
+    protected string $school;
+    protected string $class;
+
+    public function __construct(string $firstName, string $lastName, string $studentNumber, string $school, string $class) {
+        parent::__construct($firstName, $lastName);
+        $this->studentNumber = $studentNumber;
+        $this->school = $school;
+        $this->class = $class;
+    }
+
+    public function getStudentNumber(): string { return $this->studentNumber; }
+    public function setStudentNumber(string $studentNumber): void { $this->studentNumber = $studentNumber; }
+    public function getSchool(): string { return $this->school; }
+    public function setSchool(string $school): void { $this->school = $school; }
+    public function getClass(): string { return $this->class; }
+    public function setClass(string $class): void { $this->class = $class; }
+
+}
+
+$student = new Student("Bob", "Smith", "S12345", "High School", "10th Grade");
+echo "Student: " . $student->getFirstName() . " " . $student->getLastName() . "<br>";
+echo "Student Number: " . $student->getStudentNumber() . "<br>";
+echo "School: " . $student->getSchool() . "<br>";
+echo "Class: " . $student->getClass() . "<br>";
